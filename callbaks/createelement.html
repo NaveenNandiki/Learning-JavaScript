@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="display">Click me</button>
+    <script>
+        // createElement();
+        // display();
+        // function createElement(){
+        //    let script= document.createElement("Script");
+        //     script.src="display.js";
+        //     document.body.appendChild(script);
+        // }
+
+        createElement(display);
+        // ();
+        function createElement(callback){
+           let script= document.createElement("Script");
+            script.src="display.js";
+            document.body.appendChild(script);
+            callback();
+
+            // script.onload=()=>{callback()};
+            // // callback(); 
+        }
+    
+        
+
+    </script>
+</body>
+</html>

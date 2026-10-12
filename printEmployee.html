@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="display">Click me</button>
+
+    <script>
+        document.getElementById("display").addEventListener("click",display);
+         const employee={
+            eid : 101,
+            ename : "John",
+            sal:5000,
+            department:"IT",
+
+        }
+        function display(){
+            console.log(employee)
+        }
+    </script>
+</body>
+</html>

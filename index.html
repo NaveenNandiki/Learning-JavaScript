@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Take Student Marks and Calculate Result</h1>
+    <button onclick="getmarks()">Get Marks</button>
+    <p id="res"></p>
+    <p id="marks"></p>
+    <script>
+        function getmarks(){
+            let maths=prompt("Enter Maths marks");
+            let java=prompt("Enter Java Marks");
+            let sql=prompt("Enter sql marks");
+            console.log(maths+" "+java+" "+sql);
+            if(maths>=35 && java>=35 && sql>=35){
+                let sum=maths+java+sql;
+                let avg=0
+                avg=sum/3;
+                if(avg>=90){
+                   console.log("Excellent");
+                    document.getElementById("marks").innerHTML=avg;
+                    document.getElementById("res").innerHTML="Excellent";
+                }
+                else if(avg>=75){
+                    console.log("Very Good");
+                     document.getElementById("marks").innerHTML=avg;
+                    document.getElementById("res").innerHTML="Very Good";
+                }else if(avg>=60){
+                    console.log("Good");
+                     document.getElementById("marks").innerHTML=avg;
+                    document.getElementById("res").innerHTML="Good";
+                }else{
+                    console.log("Pass");
+                     document.getElementById("marks").innerHTML=avg;
+                    document.getElementById("res").innerHTML="Pass";
+                }
+            }else{
+                console.log("Fail")
+                document.getElementById("res").innerHTML="Fail";
+            }
+        }
+    </script>
+
+</body>
+</html>

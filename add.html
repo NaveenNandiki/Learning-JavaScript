@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Addition Operation</h1><button type="submit" onclick="getmarks()">Get Values</button>
+    <p id="a"></p>
+    <p id="b"></p>
+    <button type="submit" onclick="add()">Add</button>
+    <p id="res"></p>
+    <script>
+        let a;
+        let b;
+        function getmarks(){
+            a=Number(prompt("Enter First Number"));
+            document.getElementById("a").innerHTML="Value a= "+a;
+            b=Number(prompt("Enter Second Number"));
+            document.getElementById("b").innerHTML="Value b= "+b;
+            document.getElementById("res").innerHTML="";
+        }
+        function add(){
+            document.getElementById("res").innerHTML="Addition= "+(a+b);
+        }
+    </script>
+</body>
+</html>

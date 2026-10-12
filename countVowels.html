@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Count No Of Vowels in String</h1> 
+    <button onclick="enterString()">Get String</button>
+    <p id="string"  ></p>
+    <button  onclick="count()">Count</button>
+    <p id="count"></p>
+    <script>
+        let str="helo";
+        function enterString(){
+            str=prompt("Enetr a String");
+            console.log(str);
+            document.getElementById("string").innerHTML="Entered String: "+str;
+        }   
+        function count(){
+            let count=0;
+                for(let i=0;i<str.length;i++){
+                    if(str.charAt(i) =='A'||str.charAt(i) =='E'||str.charAt(i) =='I'||str.charAt(i) =='O'||str.charAt(i) =='U'||str.charAt(i) =='a'||str.charAt(i) =='e'||str.charAt(i) =='i'||str.charAt(i) =='o'||str.charAt(i) =='u'){
+                        count++;
+                    }
+                }
+            document.getElementById("count").innerHTML="Vowels Count= "+count;
+        }
+    </script>
+</body>
+</html>

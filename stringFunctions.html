@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inputString" placeholder="Enter a string">
+    <button onclick="findLength()">Find Length</button>
+    <p id="length"></p>
+    <button onclick="toUpper()">To UpperCsae</button>
+    <p id="upper"></p>
+    <button onclick="toLower()">To LowerCase</button>
+    <p id="lower"></p>
+    <button onclick="charcterAt(4)">Caharcter At 4thindex</button>
+    <p id="charAt"></p>
+
+    <script>
+
+        function findLength(){
+            let string =document.getElementById("inputString").value;
+            document.getElementById("length").innerHTML="Length of the string is: " + string.length;
+        }
+        function toUpper(){
+            let string=document.getElementById("inputString").value;
+            document.getElementById("upper").innerHTML="uppercase of the string is: " + string.toUpperCase();
+        }
+        function toLower(){
+            let string= document.getElementById("inputString").value;
+            document.getElementById("lower").innerHTML="Lowercase of the string is: " + string.toLowerCase();
+        }
+        function charcterAt(n){
+            let string= document.getElementById("inputString").value;
+            document.getElementById("charAt").innerHTML="Trim of the string is: " + string.charAt(n-1);
+        }
+    </script>
+</body>
+</html>

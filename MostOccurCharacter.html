@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Most Occurence Character</title>
+</head>
+<body>
+    <input type="text" id="inputString" placeholder="Enter a string">
+    <button id="findButton" onclick="find()">Find Most Frequent Character</button>
+    <p id="result"></p>
+
+    <script>
+        function find(){
+            let s=document.getElementById("inputString").value;
+            let max=0;
+            let resch="";
+            for(let i=0;i<s.length;i++){
+                let currlen=0;
+                let ch=s.charAt(i);
+                let j=s.indexOf(ch);
+                while(j!=-1){
+                    j=s.indexOf(ch,j+1);
+                    currlen++;
+                }
+                if(max<currlen){
+                    max=currlen;
+                    resch=ch;
+                }
+            }
+            console.log("max occutrence : "+resch);
+            document.getElementById("result").innerHTML="Most Occurence Character : "+resch;
+        }
+    </script>
+</body>
+</html>

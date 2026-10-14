@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Enter a String</label>
+    <input type="text" id="inputString" placeholder="Enter a string"><br><br>
+    <label>Enter SubString toCheck</label>
+    <input type="text" id="substr" placeholder="Enter sub String">
+    <br><br>
+    <button id="findButton" onclick="check()">Check SubStr Exist Or Not</button>
+    <p id="res"></p>
+    
+    <script>
+        function check(){
+            let str=document.getElementById("inputString").value;
+            let substr=document.getElementById("substr").value;
+            let res=str.includes(substr);
+            console.log(res);
+            document.getElementById("res").innerHTML="Result: "+res;
+        }
+    </script>
+</body>
+</html>

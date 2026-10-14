@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #edf2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            width: 320px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #0002;
+        }
+
+        h2 {
+            text-align: center;
+            color: #243b53;
+        }
+
+        #display {
+            width: 100%;
+            height: 65px;
+            margin-bottom: 12px;
+            padding: 12px;
+            text-align: right;
+            font-size: 28px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        button {
+            height: 52px;
+            font-size: 19px;
+            border: none;
+            border-radius: 8px;
+            background: #e8edf3;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #cbd5e1;
+        }
+
+        .operator {
+            background: #bfdbfe;
+        }
+
+        .clear {
+            background: #fecaca;
+        }
+
+        .equals {
+            background: #86efac;
+        }
+
+        #message {
+            color: #dc2626;
+            text-align: center;
+            min-height: 18px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <h2>Calculator</h2>
+
+    <input
+        type="text"
+        id="display"
+        value="0"
+        readonly
+        aria-label="Calculator display"
+    >
+
+    <p id="message" role="alert"></p>
+
+    <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button onclick="backspace()">DEL</button>
+        <button class="operator" onclick="percentage()">%</button>
+        <button class="operator" onclick="chooseOperator('/')">÷</button>
+
+        <button onclick="addNumber('7')">7</button>
+        <button onclick="addNumber('8')">8</button>
+        <button onclick="addNumber('9')">9</button>
+        <button class="operator" onclick="chooseOperator('*')">×</button>
+
+        <button onclick="addNumber('4')">4</button>
+        <button onclick="addNumber('5')">5</button>
+        <button onclick="addNumber('6')">6</button>
+        <button class="operator" onclick="chooseOperator('-')">−</button>
+
+        <button onclick="addNumber('1')">1</button>
+        <button onclick="addNumber('2')">2</button>
+        <button onclick="addNumber('3')">3</button>
+        <button class="operator" onclick="chooseOperator('+')">+</button>
+
+        <button onclick="toggleSign()">+/-</button>
+        <button onclick="addNumber('0')">0</button>
+        <button onclick="addDecimal()">.</button>
+        <button class="equals" onclick="calculate()">=</button>
+    </div>
+</div>
+
+<script>
+    let firstNumber = null;
+    let operator = null;
+    let shouldReset = false;
+
+    const display = document.getElementById("display");
+    const message = document.getElementById("message");
+
+    function showError(text) {
+        message.textContent = text;
+    }
+
+    function clearDisplay() {
+        display.value = "0";
+        firstNumber = null;
+        operator = null;
+        shouldReset = false;
+        showError("");
+    }
+
+    function addNumber(number) {
+        showError("");
+
+        if (shouldReset) {
+            display.value = number;
+            shouldReset = false;
+        } else if (display.value === "0") {
+            display.value = number;
+        } else if (display.value.length < 15) {
+            display.value += number;
+        }
+    }
+
+    function addDecimal() {
+        showError("");
+
+        if (shouldReset) {
+            display.value = "0.";
+            shouldReset = false;
+        } else if (!display.value.includes(".")) {
+            display.value += ".";
+        }
+    }
+
+    function chooseOperator(selectedOperator) {
+        const number = Number(display.value);
+
+        if (!Number.isFinite(number)) {
+            showError("Please enter a valid number.");
+            return;
+        }
+
+        firstNumber = number;
+        operator = selectedOperator;
+        shouldReset = true;
+        showError("");
+    }
+
+    function calculate() {
+        if (firstNumber === null || operator === null) {
+            showError("Select an operator first.");
+            return;
+        }
+
+        const secondNumber = Number(display.value);
+
+        if (!Number.isFinite(secondNumber)) {
+            showError("Please enter a valid number.");
+            return;
+        }
+
+        if (operator === "/" && secondNumber === 0) {
+            showError("Cannot divide by zero.");
+            return;
+        }
+
+        let result;
+
+        switch (operator) {
+            case "+":
+                result = firstNumber + secondNumber;
+                break;
+            case "-":
+                result = firstNumber - secondNumber;
+                break;
+            case "*":
+                result = firstNumber * secondNumber;
+                break;
+            case "/":
+                result = firstNumber / secondNumber;
+                break;
+        }
+
+        if (!Number.isFinite(result)) {
+            showError("Result is too large or invalid.");
+            return;
+        }
+
+        display.value = String(
+            Number(result.toPrecision(12))
+        );
+
+        firstNumber = null;
+        operator = null;
+        shouldReset = true;
+        showError("");
+    }
+
+    function percentage() {
+        const number = Number(display.value);
+
+        if (!Number.isFinite(number)) {
+            showError("Invalid number.");
+            return;
+        }
+
+        display.value = String(number / 100);
+        shouldReset = true;
+        showError("");
+    }
+
+    function toggleSign() {
+        display.value = String(-Number(display.value));
+        showError("");
+    }
+
+    function backspace() {
+        if (shouldReset) {
+            display.value = "0";
+            shouldReset = false;
+        } else {
+            display.value = display.value.slice(0, -1) || "0";
+        }
+
+        showError("");
+    }
+</script>
+
+</body>
+</html>

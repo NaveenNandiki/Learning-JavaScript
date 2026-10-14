@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="inputString">Mobile:</label>
+    <input type="text" id="inputString" onkeypress="prevent(event)" placeholder="Enter Phone Number">
+
+    <script>
+        function prevent(event){
+           let num=event.key;
+           if(num<'0' || num>'9'){
+            event.preventDefault();
+           }
+        }
+    </script>
+</body>
+</html>

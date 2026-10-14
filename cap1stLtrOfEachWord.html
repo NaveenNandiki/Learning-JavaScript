@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inputText" placeholder="Enter text here">
+    <button onclick="capitalizeFirstLetter()">Capitalize First Letter</button>
+    <p id="outputText"></p>
+    <script>
+        function capitalizeFirstLetter(){
+            let wrds=document.getElementById("inputText").value.split(" ");
+            let res="";
+            for(let i=0;i<wrds.length;i++){
+                res=res+wrds[i].substring(0,1).toUpperCase();
+                res=res+wrds[i].substring(1)+" ";
+            }
+            document.getElementById("outputText").innerHTML=res;
+        }
+    </script>
+</body>
+</html>
